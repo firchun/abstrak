@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
     <title>{{ env('APP_NAME') }} - {{ $title ?? '' }}</title>
-    <link rel="icon" type="image/x-icon" href="{{ asset('backend_theme') }}/assets/img/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('img') }}/musamus.png" />
     <link href="{{ asset('backend_theme') }}/assets/css/loader.css" rel="stylesheet" type="text/css" />
     <script src="{{ asset('backend_theme') }}/assets/js/loader.js"></script>
 
@@ -16,8 +16,7 @@
     <link href="{{ asset('backend_theme') }}/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend_theme') }}/assets/css/plugins.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend_theme') }}/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
-
-    <!-- END GLOBAL MANDATORY STYLES -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link href="{{ asset('backend_theme') }}/assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />

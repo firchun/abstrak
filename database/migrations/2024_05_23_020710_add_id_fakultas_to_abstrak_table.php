@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['Admin', 'UPT', 'Mahasiswa'])->default('mahasiswa')->after('email');
+        Schema::table('abstrak', function (Blueprint $table) {
+            $table->foreignId('id_fakultas')->after('id_mahasiswa');
+
+            $table->foreign('id_fakultas')->references('id')->on('fakultas');
         });
     }
 
@@ -25,7 +27,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('abstrak', function (Blueprint $table) {
             //
         });
     }

@@ -27,8 +27,9 @@ class HomeController extends Controller
     {
         $data = [
             'title' => 'Dashboard',
-            'users' => User::count(),
-            'customers' => Customer::count()
+            'admin' => User::where('role', 'Admin')->count(),
+            'mahasiswa' => User::where('role', 'Mahasiswa')->count(),
+            'upt' => User::where('role', 'UPT')->count(),
         ];
         return view('admin.dashboard', $data);
     }

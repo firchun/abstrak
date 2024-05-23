@@ -14,7 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['Admin', 'UPT', 'Mahasiswa'])->default('mahasiswa')->after('email');
+            $table->string('identity', 20)->after('name')->unique();
+            $table->string('no_hp', 15)->after('identity');
+
+            $table->dropColumn('email');
+            $table->dropColumn('email_verified_at');
+            $table->dropColumn('remember_token');
         });
     }
 

@@ -71,12 +71,24 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group  mb-3">
-                                        <label class="form-control-label" for="email">Email address<span
+                                        <label class="form-control-label"
+                                            for="email">{{ Auth::user()->role == 'Mahasiswa' ? 'NPM' : 'NIP' }}<span
                                                 class="small text-danger">*</span></label>
-                                        <input type="email" id="email"
-                                            class="form-control  @error('email') is-invalid @enderror" name="email"
-                                            placeholder="example@example.com"
-                                            value="{{ old('email', Auth::user()->email) }}">
+                                        <input type="text" id="identity"
+                                            class="form-control  @error('identity') is-invalid @enderror" name="identity"
+                                            placeholder="{{ Auth::user()->role == 'Mahasiswa' ? 'NPM' : 'NIP' }}"
+                                            value="{{ old('identity', Auth::user()->identity) }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group  mb-3">
+                                        <label class="form-control-label" for="email">Nomor HP/WA<span
+                                                class="small text-danger">*</span></label>
+                                        <input type="text" id="identity"
+                                            class="form-control  @error('no_hp') is-invalid @enderror" name="no_hp"
+                                            placeholder="Nomor HP/WA" value="{{ old('no_hp', Auth::user()->no_hp) }}">
                                     </div>
                                 </div>
                             </div>

@@ -1,31 +1,18 @@
 @push('js')
     <script>
         $(function() {
-            $('#datatable-users').DataTable({
+            $('#datatable-fakultas').DataTable({
                 processing: true,
                 serverSide: true,
                 responsive: true,
-                ajax: '{{ url('users-datatable', $jenis) }}',
+                ajax: '{{ url('fakultas-datatable') }}',
                 columns: [{
                         data: 'id',
                         name: 'id'
                     },
                     {
-                        data: 'avatar',
-                        name: 'avatar'
-                    },
-                    {
-                        data: 'name',
-                        name: 'name'
-                    },
-                    {
-                        data: 'identity',
-                        name: 'identity'
-                    },
-
-                    {
-                        data: 'role',
-                        name: 'role'
+                        data: 'fakultas',
+                        name: 'fakultas'
                     },
                     {
                         data: 'action',
@@ -36,15 +23,14 @@
             $('.create-new').click(function() {
                 $('#create').modal('show');
             });
-            window.editUser = function(id) {
+            window.editFakultas = function(id) {
                 $.ajax({
                     type: 'GET',
-                    url: '/users/edit/' + id,
+                    url: '/fakultas/edit/' + id,
                     success: function(response) {
                         $('#UsersModalLabel').text('Edit User');
-                        $('#formUserId').val(response.id);
-                        $('#formUserName').val(response.name);
-                        $('#formUserEmail').val(response.email);
+                        $('#formFakultasId').val(response.id);
+                        $('#formFakultas').val(response.fakultas);
                         $('#UsersModal').modal('show');
                     },
                     error: function(xhr) {
@@ -52,12 +38,12 @@
                     }
                 });
             };
-            $('#saveUserBtn').click(function() {
-                var formData = $('#userForm').serialize();
+            $('#saveFakultasBtn').click(function() {
+                var formData = $('#fakultasForm').serialize();
 
                 $.ajax({
                     type: 'POST',
-                    url: '/users/store',
+                    url: '/fakultas/store',
                     data: formData,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -65,7 +51,7 @@
                     success: function(response) {
                         alert(response.message);
                         // Refresh DataTable setelah menyimpan perubahan
-                        $('#datatable-users').DataTable().ajax.reload();
+                        $('#datatable-fakultas').DataTable().ajax.reload();
                         $('#usersModal').modal('hide');
                     },
                     error: function(xhr) {
@@ -73,12 +59,12 @@
                     }
                 });
             });
-            $('#createUserBtn').click(function() {
-                var formData = $('#createUserForm').serialize();
+            $('#createFakultasBtn').click(function() {
+                var formData = $('#createFakultasForm').serialize();
 
                 $.ajax({
                     type: 'POST',
-                    url: '/users/store',
+                    url: '/fakultas/store',
                     data: formData,
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -86,8 +72,8 @@
                     success: function(response) {
                         alert(response.message);
                         $('#userssModalLabel').text('Edit User');
-                        $('#formUserName').val('');
-                        $('#datatable-users').DataTable().ajax.reload();
+                        $('#formCreateFakultas').val('');
+                        $('#datatable-fakultas').DataTable().ajax.reload();
                         $('#create').modal('hide');
                     },
                     error: function(xhr) {
@@ -96,18 +82,18 @@
                 });
             });
 
-            window.deleteUser = function(id) {
-                if (confirm('Apakah Anda yakin ingin menghapus pengguna ini?')) {
+            window.deleteFakultas = function(id) {
+                if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
                     $.ajax({
                         type: 'DELETE',
-                        url: '/users/delete/' + id,
+                        url: '/fakultas/delete/' + id,
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function(response) {
                             alert(response.message);
                             // Refresh DataTable setelah menghapus pengguna
-                            $('#datatable-users').DataTable().ajax.reload();
+                            $('#datatable-fakultas').DataTable().ajax.reload();
                         },
                         error: function(xhr) {
                             alert('Terjadi kesalahan: ' + xhr.responseText);

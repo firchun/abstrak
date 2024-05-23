@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\FakultasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Models\Fakultas;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,18 +30,20 @@ Route::middleware(['auth:web'])->group(function () {
     //akun managemen
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    //customers managemen
-    Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
-    Route::post('/customers/store',  [CustomerController::class, 'store'])->name('customers.store');
-    Route::get('/customers/edit/{id}',  [CustomerController::class, 'edit'])->name('customers.edit');
-    Route::delete('/customers/delete/{id}',  [CustomerController::class, 'destroy'])->name('customers.delete');
-    Route::get('/customers-datatable', [CustomerController::class, 'getCustomersDataTable']);
 });
 Route::middleware(['auth:web', 'role:Admin'])->group(function () {
+    Route::get('/fakultas', [FakultasController::class, 'index'])->name('fakultas');
+    Route::get('/fakultas-datatable', [FakultasController::class, 'getFakultasDataTable']);
+    Route::post('/fakultas/store',  [FakultasController::class, 'store'])->name('fakultas.store');
+    Route::get('/fakultas/edit/{id}',  [FakultasController::class, 'edit'])->name('fakultas.edit');
+    Route::delete('/fakultas/delete/{id}',  [FakultasController::class, 'destroy'])->name('fakultas.delete');
     //user managemen
     Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::get('/admin', [UserController::class, 'admin'])->name('admin');
+    Route::get('/upt', [UserController::class, 'upt'])->name('upt');
+    Route::get('/mahasiswa', [UserController::class, 'mahasiswa'])->name('mahasiswa');
     Route::post('/users/store',  [UserController::class, 'store'])->name('users.store');
     Route::get('/users/edit/{id}',  [UserController::class, 'edit'])->name('users.edit');
     Route::delete('/users/delete/{id}',  [UserController::class, 'destroy'])->name('users.delete');
-    Route::get('/users-datatable', [UserController::class, 'getUsersDataTable']);
+    Route::get('/users-datatable/{role}', [UserController::class, 'getUsersDataTable']);
 });
