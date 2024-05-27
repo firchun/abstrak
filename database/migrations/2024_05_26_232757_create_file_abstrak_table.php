@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('abstrak', function (Blueprint $table) {
+        Schema::create('file_abstrak', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
+            $table->foreignId('id_abstrak');
             $table->string('file');
+            $table->boolean('status')->comment('0 : menunggu pemeriksaan, 1 : disetujui, 2 : revisi')->default(0);
             $table->timestamps();
+
+            $table->foreign('id_abstrak')->references('id')->on('abstrak');
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengajuan_abstrak');
+        Schema::dropIfExists('file_abstrak');
     }
 };

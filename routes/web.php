@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AbstrakController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FakultasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Models\Abstrak;
 use App\Models\Fakultas;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,9 +29,17 @@ Auth::routes();
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    //abstrak managemen
+    Route::post('/abstrak/store', [AbstrakController::class, 'store'])->name('abstrak.store');
     //akun managemen
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
+Route::middleware(['auth:web', 'role:UPT'])->group(function () {
+    Route::get('/abstrak', [AbstrakController::class, 'index'])->name('abstrak');
+    Route::get('/abstrak/periksa/{id}', [AbstrakController::class, 'periksa'])->name('abstrak.periksa');
+    Route::post('/abstrak/hasil-periksa', [AbstrakController::class, 'hasilPeriksa'])->name('abstrak.hasil-periksa');
+    Route::get('/abstrak-datatable', [AbstrakController::class, 'getAbstrakDataTable']);
 });
 Route::middleware(['auth:web', 'role:Admin'])->group(function () {
     Route::get('/fakultas', [FakultasController::class, 'index'])->name('fakultas');

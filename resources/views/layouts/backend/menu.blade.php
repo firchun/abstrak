@@ -87,6 +87,22 @@
                         </div>
                     </a>
                 </li>
+            @elseif(Auth::user()->role =='UPT')
+            <li class="menu menu-heading">
+                <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle">
+                        <circle cx="12" cy="12" r="10"></circle>
+                    </svg><span>Pengajuan</span></div>
+            </li>
+            <li class="menu {{ request()->is('abstrak') ? 'active' : '' }}">
+                <a href="{{ url('/abstrak') }}" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <i class="bx bx-user bx-sm" style="vertical-align: middle;"></i>
+                        <span>Data pengajuan</span>
+                    </div>
+                </a>
+            </li>
             @endif
             <li class="menu menu-heading">
                 <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
