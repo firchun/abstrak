@@ -3,7 +3,9 @@
 use App\Http\Controllers\AbstrakController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FakultasController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\UserController;
 use App\Models\Abstrak;
 use App\Models\Fakultas;
@@ -31,15 +33,30 @@ Route::middleware(['auth:web'])->group(function () {
 
     //abstrak managemen
     Route::post('/abstrak/store', [AbstrakController::class, 'store'])->name('abstrak.store');
+    Route::post('/abstrak/upload-revisi', [AbstrakController::class, 'uploadRevisi'])->name('abstrak.upload-revisi');
     //akun managemen
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 Route::middleware(['auth:web', 'role:UPT'])->group(function () {
+    //pembayaran
+    Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
+    Route::get('/pembayaran/terima/{id}', [PembayaranController::class, 'terima'])->name('pembayaran.terima');
+    Route::get('/pembayaran/tolak/{id}', [PembayaranController::class, 'tolak'])->name('pembayaran.tolak');
+    Route::get('/pembayaran-datatable', [PembayaranController::class, 'getPembayaranDataTable']);
+    //pengajuan abstrak 
     Route::get('/abstrak', [AbstrakController::class, 'index'])->name('abstrak');
     Route::get('/abstrak/periksa/{id}', [AbstrakController::class, 'periksa'])->name('abstrak.periksa');
     Route::post('/abstrak/hasil-periksa', [AbstrakController::class, 'hasilPeriksa'])->name('abstrak.hasil-periksa');
     Route::get('/abstrak-datatable', [AbstrakController::class, 'getAbstrakDataTable']);
+  
+});
+Route::middleware(['auth:web', 'role:Mahasiswa'])->group(function () {
+    //riwayat
+    Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat');
+    Route::get('/riwayat-datatable', [RiwayatController::class, 'getRiwayatDataTable']);
+    //pembayaran managemen
+    Route::post('/pembayaran/store', [PembayaranController::class, 'store'])->name('pembayaran.store');
 });
 Route::middleware(['auth:web', 'role:Admin'])->group(function () {
     Route::get('/fakultas', [FakultasController::class, 'index'])->name('fakultas');

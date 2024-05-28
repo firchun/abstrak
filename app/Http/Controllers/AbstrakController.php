@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Abstrak;
 use App\Models\FileAbstrak;
+use App\Models\Pembayaran;
 use App\Models\Pemeriksaan;
 use App\Models\StatusAbstrak;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -87,8 +89,30 @@ class AbstrakController extends Controller
                 $latestFile = $abstrak->file()->latest()->first();
                 return '<a target="__blank" href="'.Storage::url($latestFile).'" class="btn btn-success">Lihat File</a>';
             })
+            ->addColumn('whatsapp', function ($abstrak) {
+                $status = StatusAbstrak::where('id_abstrak',$abstrak->id)->latest()->first()->status;
+                $pemeriksaan = Pemeriksaan::where('id_abstrak',$abstrak->id)->latest()->count();
+                $no_hp = User::find($abstrak->id_mahasiswa)->no_hp;
+                $pembayaran = Pembayaran::where('id_abstrak',$abstrak->id)->latest()->count();
+                  //api wa
+                $text_pembayaran= $pembayaran == 0 ? "Tagihan : Rp 50.000 (jika belum membayar)\n" : '';
+                
+                $pesan = "Judul : ".$abstrak->judul."\n".
+                "Tanggal Pengajuan : ".$abstrak->created_at->format('d F Y')."\n".
+                "Status Pengajuan : ".$status."\n".
+                $text_pembayaran;
+    
+                $pesan_encoded = urlencode($pesan);
+                $url = 'https://api.whatsapp.com/send?phone='.$no_hp.'&text='.$pesan_encoded;
+                //end
+                $text_tagihan = $url;
+                $text_kosong = 'https://api.whatsapp.com/send?phone='.$no_hp;
+                $link = $pemeriksaan ==0 ? $text_kosong : $text_tagihan;
+                $tombol = '<a href="'. $link.'" class="btn btn-success"><i class="bx bxl-whatsapp"></i></a>';
+                return $tombol;
+            })
             
-            ->rawColumns(['action', 'file','tanggal','mahasiswa','status'])
+            ->rawColumns(['action', 'file','tanggal','mahasiswa','status','whatsapp'])
             ->make(true);
     }
     public function periksa($id){
@@ -140,6 +164,38 @@ class AbstrakController extends Controller
         } else {
             return response()->json(['message' => 'Gagal mengirim hasil']);
         }
+    }
+    public function uploadRevisi(Request $request)
+    {
+        $validatedData = $request->validate([
+            'id_abstrak'=> 'required',
+            'file' => 'required|file|mimes:pdf',
+        ]);
+    
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = Str::random(32) . '.' . $file->getClientOriginalExtension();
+            
+            // Simpan file ke storage
+            $path = $file->storeAs('public/file', $filename);
+
+            $file = new FileAbstrak();
+            $file->id_abstrak = $validatedData['id_abstrak'];
+            $file->file = $path;
+            $file->save();
+
+            $status = new StatusAbstrak();
+            $status->id_abstrak = $validatedData['id_abstrak'];
+            $status->id_staff = Auth::id();
+            $status->status = 'Pengajuan ulang file';
+            $status->save();
+    
+            session()->flash('success', 'Berhasil mengajukan abstrak');
+            return back();
+        }
+    
+        session()->flash('error', 'Gagal menyimpan abstrak');
+        return back()->withInput();
     }
     
 }

@@ -40,14 +40,17 @@
                                 <p>Fakultas {{ $abstrak->fakultas->fakultas }}</p>
                             </div>
                             <p>File Abstrak :</p>
-                            <p><input type="file" name="file" class="form-control mb-3" required>
-                            <button type="submit" class="btn btn-sm btn-warning">Upload Ulang</button></p>
-                            @if($file_abstrak->status == 2)
-                           <p>File sebelumnya</p>
+                            @if($file_abstrak->status==2)
+                            <form action="{{route('abstrak.upload-revisi')}}" method="POST" enctype="multipart/form-data" class="mb-4">
+                                @csrf
+                                <input type="hidden" name="id_abstrak" value="{{$abstrak->id}}">
+                                <p><input type="file" name="file" class="form-control mb-3" required accept="application/pdf">
+                                <button type="submit" class="btn btn-sm btn-warning">Upload Ulang</button></p>
+                            </form>
+                            @else
+                                <a href="{{Storage::url($latestFile)}}" target="__blank" class="btn btn-success btn-sm">File Abstrak</a>
                             @endif
-                            <p><a href="{{ Storage::url($latestFile) }}" target="__blank"
-                                    class="btn btn-sm btn-success">Lihat
-                                    Abstrak</a></p>
+                            
                         </div>
                         <div class="inv-detail">
                             <p>Status Pengajuan:</p>
@@ -74,6 +77,47 @@
         </div>
     @endif
     <div class=" col-md-4">
+        @if ($pengajuan->count() != 0)
+        <div class="p-3 border border-secondary bg-white mb-3" style="border-radius:20px;margin-top:24px;">
+            <h4>Pembayaran</h4>
+            <hr>
+           @php
+            $pembayaran = App\Models\Pembayaran::where('id_abstrak',$abstrak->id)->get();
+            $cek_lunas = App\Models\Pembayaran::where('id_abstrak',$abstrak->id)->where('diterima',[0,1])->latest()->first();
+           @endphp
+           @if(!$cek_lunas)
+            <form action="{{route('pembayaran.store')}}" method="POST" enctype="multipart/form-data" class="mb-4">
+                @csrf
+                <input type="hidden" name="id_abstrak" value="{{$abstrak->id}}">
+                <div class="mb-3">
+                    <label>Jumlah</label>
+                    <input type="number" class="form-control form-control-sm" name="jumlah" required>
+                </div>
+                <div class="mb-3">
+                    <label>Bukti Bayar (PDF)</label>
+                    <input type="file" class="form-control" name="file" required  accept="application/pdf">
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm">Kirim</button>
+            </form>
+           @endif
+           <table class="table">
+            <thead>
+                <th>Tanggal</th>
+                <th>Bukti</th>
+                <th>Status</th>
+            </thead>
+            <tbody>
+                @foreach($pembayaran as $item)
+                <tr>
+                    <td>{{$item->created_at->format('d F Y')}}</td>
+                    <td><a target="__blank" href="" class="btn btn-success btn-sm">Lihat</a></td>
+                    <td>@if($item->status == 0) Menunggu Verifikasi @elseif($item->status ==1) Sukses @else Ditolak @endif</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        </div>
+        @endif
         <div class="p-3 border border-secondary bg-white" style="border-radius:20px;margin-top:24px;">
             <h4>Identitas</h4>
             <hr>

@@ -18,6 +18,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
+                        <th>WA</th>
                         <th>Tanggal</th>
                         <th>Fakultas</th>
                         <th>Mahasiswa</th>
@@ -29,6 +30,7 @@
                 <tfoot>
                     <tr>
                         <th>ID</th>
+                        <th>WA</th>
                         <th>Tanggal</th>
                         <th>Fakultas</th>
                         <th>Mahasiswa</th>

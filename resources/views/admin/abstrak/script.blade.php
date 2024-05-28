@@ -11,6 +11,10 @@
                         name: 'id'
                     },
                     {
+                        data: 'whatsapp',
+                        name: 'whatsapp'
+                    },
+                    {
                         data: 'tanggal',
                         name: 'tanggal'
                     },
