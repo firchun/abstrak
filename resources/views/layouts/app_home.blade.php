@@ -48,10 +48,10 @@
 
         <div class="helpdesk layout-spacing">
 
-            <div class="hd-header-wrapper">
+            <div class="hd-header-wrapper ">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h4 class="">Sistem Informasi Pelayanan Abstrak</h4>
+                        <h4 style="font-size:4vh;">Sistem Informasi Pelayanan Abstrak</h4>
                         <p class="">Universitas Musamus </p>
                     </div>
                 </div>
