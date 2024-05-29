@@ -9,6 +9,9 @@
         <h2>Sistem Informasi Pelayanan Abstrak</h2>
         <h4>Universitas Musamus</h4>
     </div>
+    @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'UPT')
+    @include('admin.dashboard_component.grafik')
+    @endif
     @if (Auth::user()->role == 'Admin')
         <div class="row justify-content-center">
             @include('admin.dashboard_component.card1', [

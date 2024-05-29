@@ -3,6 +3,7 @@
 use App\Http\Controllers\AbstrakController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FakultasController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RiwayatController;
@@ -30,7 +31,8 @@ Route::get('/', function () {
 Auth::routes();
 Route::middleware(['auth:web'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+    //grafik
+    Route::get('/grafik', [HomeController::class, 'grafik'])->name('grafik');
     //abstrak managemen
     Route::post('/abstrak/store', [AbstrakController::class, 'store'])->name('abstrak.store');
     Route::post('/abstrak/upload-revisi', [AbstrakController::class, 'uploadRevisi'])->name('abstrak.upload-revisi');

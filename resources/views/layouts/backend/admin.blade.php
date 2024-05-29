@@ -19,9 +19,16 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-    <link href="{{ asset('backend_theme') }}/assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
+    {{-- <link href="{{ asset('backend_theme') }}/assets/css/dashboard/dash_1.css" rel="stylesheet" type="text/css" /> --}}
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link rel="stylesheet" type="text/css" href="{{ asset('backend_theme') }}/assets/css/elements/alert.css">
+    {{-- <link href="{{ asset('backend_theme') }}/plugins/apex/apexcharts.css" rel="stylesheet" type="text/css"> --}}
+    <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
+    <style>
+        .apexcharts-canvas {
+            margin: 0 auto;
+        }
+    </style>
     <style>
         .btn-light {
             border-color: transparent;
@@ -91,11 +98,15 @@
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     <script src="{{ asset('backend_theme') }}/assets/js/scrollspyNav.js"></script>
-    <script src="{{ asset('backend_theme') }}/assets/js/dashboard/dash_1.js"></script>
+    {{-- <script src="{{ asset('backend_theme') }}/assets/js/dashboard/dash_1.js"></script> --}}
     <script src="{{ asset('backend_theme') }}/plugins/table/datatable/datatables.js"></script>
     <script src="{{ asset('backend_theme') }}/plugins/sweetalerts/sweetalert2.min.js"></script>
     <script src="{{ asset('backend_theme') }}/plugins/sweetalerts/custom-sweetalert.js"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+    {{-- <script src="{{ asset('backend_theme') }}/plugins/apex/apexcharts.min.js"></script> --}}
+    
+    
+
 
     @if (Session::has('danger'))
         <script>
