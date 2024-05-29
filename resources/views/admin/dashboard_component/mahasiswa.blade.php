@@ -2,8 +2,10 @@
 @php
     $pengajuan = App\Models\Abstrak::with(['mahasiswa','fakultas','file'])->where('id_mahasiswa', Auth::user()->id);
     $abstrak = $pengajuan->first();
-    $file_abstrak = $abstrak->file()->latest()->first();
-    $latestFile = $abstrak->file()->latest()->first()->file;
+    if($abstrak->file){
+        $file_abstrak = $abstrak->file()->latest()->first();
+        $latestFile = $abstrak->file()->latest()->first()->file;
+    }
 @endphp
 @if ($pengajuan->count() == 0)
     <div class="container text-center ">
