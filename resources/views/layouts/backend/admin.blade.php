@@ -104,8 +104,8 @@
     <script src="{{ asset('backend_theme') }}/plugins/sweetalerts/custom-sweetalert.js"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     {{-- <script src="{{ asset('backend_theme') }}/plugins/apex/apexcharts.min.js"></script> --}}
-    
-    
+
+
 
 
     @if (Session::has('danger'))

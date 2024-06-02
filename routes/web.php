@@ -4,6 +4,7 @@ use App\Http\Controllers\AbstrakController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FakultasController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RiwayatController;
@@ -51,7 +52,10 @@ Route::middleware(['auth:web', 'role:UPT'])->group(function () {
     Route::get('/abstrak/periksa/{id}', [AbstrakController::class, 'periksa'])->name('abstrak.periksa');
     Route::post('/abstrak/hasil-periksa', [AbstrakController::class, 'hasilPeriksa'])->name('abstrak.hasil-periksa');
     Route::get('/abstrak-datatable', [AbstrakController::class, 'getAbstrakDataTable']);
-  
+});
+Route::middleware(['auth:web', 'role:UPT,Admin'])->group(function () {
+    Route::get('/laporan/pengajuan', [LaporanController::class, 'pengajuan'])->name('laporan.pengajuan');
+    Route::get('/laporan/pembayaran', [LaporanController::class, 'pembayaran'])->name('laporan.pembayaran');
 });
 Route::middleware(['auth:web', 'role:Mahasiswa'])->group(function () {
     //riwayat

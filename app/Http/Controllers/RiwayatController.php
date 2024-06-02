@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Abstrak;
 use App\Models\FileAbstrak;
+use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -11,39 +12,39 @@ use Yajra\DataTables\Facades\DataTables;
 
 class RiwayatController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data = [
-            'title'=> 'Riwayat File Pengajuan',
+            'title' => 'Riwayat File Pengajuan',
         ];
-        return view('admin.riwayat.index',$data);
+        return view('admin.riwayat.index', $data);
     }
     public function getRiwayatDataTable()
     {
-        $abstrak = Abstrak::where('id_mahasiswa',Auth::id())->first();
-        $riwayat = FileAbstrak::where('id_abstrak',$abstrak->id)->orderByDesc('id');
+        $riwayat = Abstrak::where('id_mahasiswa', Auth::id());
+        // $riwayat = FileAbstrak::with(['abstrak'])->whereHas('abstrak', function ($query) {
+        //     $query->where('id_mahasiswa', Auth::id());
+        // })->orderByDesc('id');
 
 
         return DataTables::of($riwayat)
-            ->addColumn('tanggal', function($riwayat){
+            ->addColumn('tanggal', function ($riwayat) {
                 return $riwayat->created_at->format('d F Y');
             })
-            ->addColumn('file', function ($riwayat) {
-                return '<a target="__blank" href="'.Storage::url($riwayat->file).'" class="btn btn-success">Lihat File</a>';
+            ->addColumn('file_abstrak', function ($riwayat) {
+                $file = FileAbstrak::where('id_abstrak', $riwayat->id)->latest()->first();
+                return '<a target="__blank" href="' . Storage::url($file->file) . '" class="btn btn-sm btn-success">Lihat File</a>';
             })
-            ->addColumn('status', function ($riwayat) {
-                if($riwayat->status == 0){
-                    $text ='Menunggu Pemeriksaan';
-                }elseif($riwayat->status == 1){
-                    $text ='Abstrak diterima';
-                    
-                }else{
-                    $text ='Revisi';
-
-                }
-                return $text;
+            ->addColumn('file_pembayaran', function ($riwayat) {
+                $pembayaran = Pembayaran::where('id_abstrak', $riwayat->id)->latest()->first();
+                return '<a target="__blank" href="' . Storage::url($pembayaran->file) . '" class="btn btn-sm btn-success">Lihat File</a>';
+            })
+            ->addColumn('file_pengesahan', function ($riwayat) {
+                return '<a target="__blank" href="' . Storage::url($riwayat->file_lembar_pengesahan) . '" class="btn btn-sm btn-success">Lihat File</a>';
             })
 
-            ->rawColumns(['status','tanggal','file'])
+
+            ->rawColumns(['status', 'tanggal', 'file_abstrak', 'file_pengesahan', 'file_pembayaran'])
             ->make(true);
     }
 }

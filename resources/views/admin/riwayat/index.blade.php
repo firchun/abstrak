@@ -9,7 +9,7 @@
                 <span class="d-none d-sm-inline-block">Refresh Data</span>
             </span>
         </button>
-       
+
     </div>
     <div class="widget-content widget-content-area br-6">
         <h3 class="">{{ $title ?? 'Title' }}</h3>
@@ -19,16 +19,20 @@
                     <tr>
                         <th>ID</th>
                         <th>Tanggal</th>
-                        <th>File</th>
-                        <th>Status</th>
+                        <th>Judul</th>
+                        <th>File Abstrak</th>
+                        <th>File Pembayaran</th>
+                        <th>File Pengesahan</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>ID</th>
                         <th>Tanggal</th>
-                        <th>File</th>
-                        <th>Status</th>
+                        <th>Judul</th>
+                        <th>File Abstrak</th>
+                        <th>File Pembayaran</th>
+                        <th>File Pengesahan</th>
                     </tr>
                 </tfoot>
             </table>
@@ -52,22 +56,30 @@
                         name: 'tanggal'
                     },
                     {
-                        data: 'file',
-                        name: 'file'
+                        data: 'judul',
+                        name: 'judul'
                     },
                     {
-                        data: 'status',
-                        name: 'status'
+                        data: 'file_abstrak',
+                        name: 'file_abstrak'
                     },
-                    
+                    {
+                        data: 'file_pembayaran',
+                        name: 'file_pembayaran'
+                    },
+                    {
+                        data: 'file_pengesahan',
+                        name: 'file_pengesahan'
+                    },
+
+
                 ]
             });
             $('.refresh').click(function() {
                 $('#datatable-riwayat').DataTable().ajax.reload();
             });
-           
-           
+
+
         });
     </script>
 @endpush
-
