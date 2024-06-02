@@ -132,120 +132,79 @@
                 <div class="col-12">
                     <div class="accordion shadow rounded py-5 px-0 px-lg-4 bg-white position-relative" id="accordionFAQ">
                         <div class="accordion-item p-1 mb-2">
-                            <h2 class="accordion-header accordion-button h5 border-0 active"
-                                id="heading-ebd23e34fd2ed58299b32c03c521feb0b02f19d9" type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#collapse-ebd23e34fd2ed58299b32c03c521feb0b02f19d9" aria-expanded="true"
-                                aria-controls="collapse-ebd23e34fd2ed58299b32c03c521feb0b02f19d9">Can I apply if my credit
-                                isn&rsquo;t
-                                perfect?
+                            <h2 class="accordion-header accordion-button h5 border-0 active" id="heading-1" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="true"
+                                aria-controls="collapse-1">Membuka Website
                             </h2>
-                            <div id="collapse-ebd23e34fd2ed58299b32c03c521feb0b02f19d9"
-                                class="accordion-collapse collapse border-0 show"
-                                aria-labelledby="heading-ebd23e34fd2ed58299b32c03c521feb0b02f19d9"
-                                data-bs-parent="#accordionFAQ">
-                                <div class="accordion-body py-0 content">The difference between and premium product consist
-                                    number of
-                                    components, plugins, page in each. The Free versions contain only a few elements and
-                                    pages that.</div>
+                            <div id="collapse-1" class="accordion-collapse collapse border-0 show"
+                                aria-labelledby="heading-1" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body py-0 content">Mahasiswa membuka website pelayanan abstrak milik
+                                    UPT Bahasa univeristas musamus merauke dengan menuliskan
+                                    https://pelayanan-abstrak.mixdev.id pada browser smartphone maupun leptop</div>
                             </div>
                         </div>
                         <div class="accordion-item p-1 mb-2">
-                            <h2 class="accordion-header accordion-button h5 border-0 "
-                                id="heading-a443e01b4db47b3f4a1267e10594576d52730ec1" type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#collapse-a443e01b4db47b3f4a1267e10594576d52730ec1" aria-expanded="false"
-                                aria-controls="collapse-a443e01b4db47b3f4a1267e10594576d52730ec1">How do I know that I have
-                                been
-                                approved?
+                            <h2 class="accordion-header accordion-button h5 border-0 " id="heading-1" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="true"
+                                aria-controls="collapse-2">Membuat Akun
                             </h2>
-                            <div id="collapse-a443e01b4db47b3f4a1267e10594576d52730ec1"
-                                class="accordion-collapse collapse border-0 "
-                                aria-labelledby="heading-a443e01b4db47b3f4a1267e10594576d52730ec1"
-                                data-bs-parent="#accordionFAQ">
-                                <div class="accordion-body py-0 content">The difference between and premium product consist
-                                    number of
-                                    components, plugins, page in each. The Free versions contain only a few elements and
-                                    pages that.</div>
+                            <div id="collapse-2" class="accordion-collapse collapse border-0 "
+                                aria-labelledby="heading-2" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body py-0 content">Setelah membuka website pelayanan abstrak,
+                                    mahasiswa diwajibkan untuk membuat akun terlebih dahulu jika belum pernah mendaftar pada
+                                    website.</div>
                             </div>
                         </div>
                         <div class="accordion-item p-1 mb-2">
-                            <h2 class="accordion-header accordion-button h5 border-0 "
-                                id="heading-4b82be4be873c8ad699fa97049523ac86b67a8bd" type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#collapse-4b82be4be873c8ad699fa97049523ac86b67a8bd" aria-expanded="false"
-                                aria-controls="collapse-4b82be4be873c8ad699fa97049523ac86b67a8bd">Do I need to fax or email
-                                any
-                                documents?
+                            <h2 class="accordion-header accordion-button h5 border-0 " id="heading-1" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapse-3" aria-expanded="true"
+                                aria-controls="collapse-3">Login pada website
                             </h2>
-                            <div id="collapse-4b82be4be873c8ad699fa97049523ac86b67a8bd"
-                                class="accordion-collapse collapse border-0 "
-                                aria-labelledby="heading-4b82be4be873c8ad699fa97049523ac86b67a8bd"
-                                data-bs-parent="#accordionFAQ">
-                                <div class="accordion-body py-0 content">The difference between and premium product consist
-                                    number of
-                                    components, plugins, page in each. The Free versions contain only a few elements and
-                                    pages that.</div>
+                            <div id="collapse-3" class="accordion-collapse collapse border-0 "
+                                aria-labelledby="heading-3" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body py-0 content">Jika telah berhasil mendaftar dan memiliki akun,
+                                    mahasiswa dapat login pada tombol login, dengan mengisikan npm dan password yang telah
+                                    di buat pada saat pendaftaran akun</div>
                             </div>
                         </div>
                         <div class="accordion-item p-1 mb-2">
-                            <h2 class="accordion-header accordion-button h5 border-0 "
-                                id="heading-3e13e9676a9cd6a6f8bfbe6e1e9fc0881ef247b3" type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#collapse-3e13e9676a9cd6a6f8bfbe6e1e9fc0881ef247b3" aria-expanded="false"
-                                aria-controls="collapse-3e13e9676a9cd6a6f8bfbe6e1e9fc0881ef247b3">Do you provide loans to
-                                military
-                                personnel?
+                            <h2 class="accordion-header accordion-button h5 border-0 " id="heading-1" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapse-4" aria-expanded="true"
+                                aria-controls="collapse-4">Upload File
                             </h2>
-                            <div id="collapse-3e13e9676a9cd6a6f8bfbe6e1e9fc0881ef247b3"
-                                class="accordion-collapse collapse border-0 "
-                                aria-labelledby="heading-3e13e9676a9cd6a6f8bfbe6e1e9fc0881ef247b3"
-                                data-bs-parent="#accordionFAQ">
-                                <div class="accordion-body py-0 content">The difference between and premium product consist
-                                    number of
-                                    components, plugins, page in each. The Free versions contain only a few elements and
-                                    pages that.</div>
+                            <div id="collapse-4" class="accordion-collapse collapse border-0 "
+                                aria-labelledby="heading-4" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body py-0 content">Selamat anda berhasil login, jika telah berhasil
+                                    login, mahasiswa dapat mengisi formulir pengajuan dan upload syarat pengajuan abstrak
+                                    sesuai pada syarat diatas dan jangan lupa untuk membayar dan mengupload bukti pembayaran
+                                </div>
                             </div>
                         </div>
                         <div class="accordion-item p-1 mb-2">
-                            <h2 class="accordion-header accordion-button h5 border-0 "
-                                id="heading-0c2f829793a1f0562fea97120357dd2d43319164" type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#collapse-0c2f829793a1f0562fea97120357dd2d43319164" aria-expanded="false"
-                                aria-controls="collapse-0c2f829793a1f0562fea97120357dd2d43319164">Can I remove footer
-                                credit
-                                purchase ?
+                            <h2 class="accordion-header accordion-button h5 border-0 " id="heading-1" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapse-5" aria-expanded="true"
+                                aria-controls="collapse-5">Status Pengajuan
                             </h2>
-                            <div id="collapse-0c2f829793a1f0562fea97120357dd2d43319164"
-                                class="accordion-collapse collapse border-0 "
-                                aria-labelledby="heading-0c2f829793a1f0562fea97120357dd2d43319164"
-                                data-bs-parent="#accordionFAQ">
-                                <div class="accordion-body py-0 content">The difference between and premium product consist
-                                    number of
-                                    components, plugins, page in each. The Free versions contain only a few elements and
-                                    pages that.</div>
+                            <div id="collapse-5" class="accordion-collapse collapse border-0 "
+                                aria-labelledby="heading-5" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body py-0 content">Jika sudah mengisi formulir pengajuan, staff UPT
+                                    akan memeriksa kelengkapan persyaratan dan abstrak yang telah diajuka, proses ini akan
+                                    memakan waktu sehingga anda dapat menunggu dan cek status pengajuan pada website</div>
                             </div>
                         </div>
                         <div class="accordion-item p-1 mb-2">
-                            <h2 class="accordion-header accordion-button h5 border-0 "
-                                id="heading-8fe6730e26db16f15763887c30a614caa075f518" type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#collapse-8fe6730e26db16f15763887c30a614caa075f518" aria-expanded="false"
-                                aria-controls="collapse-8fe6730e26db16f15763887c30a614caa075f518">What is the difference
-                                the
-                                free
-                                versions?
+                            <h2 class="accordion-header accordion-button h5 border-0 " id="heading-1" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapse-6" aria-expanded="true"
+                                aria-controls="collapse-6">Abstrak telah selesai
                             </h2>
-                            <div id="collapse-8fe6730e26db16f15763887c30a614caa075f518"
-                                class="accordion-collapse collapse border-0 "
-                                aria-labelledby="heading-8fe6730e26db16f15763887c30a614caa075f518"
-                                data-bs-parent="#accordionFAQ">
-                                <div class="accordion-body py-0 content">The difference between and premium product consist
-                                    number of
-                                    components, plugins, page in each. The Free versions contain only a few elements and
-                                    pages that.</div>
+                            <div id="collapse-6" class="accordion-collapse collapse border-0 "
+                                aria-labelledby="heading-6" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body py-0 content">Selamat pengajuan abstrak anda telah selesai, cek
+                                    selalu website agar dapat melihat status pengajuan anda dan jika telah selesai anda
+                                    dapat mendownload file abstrak yang telah diperiksa</div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
