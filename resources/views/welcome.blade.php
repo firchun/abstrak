@@ -13,8 +13,8 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="ps-lg-5 text-center">
-                        <img loading="lazy" decoding="async" src="{{ asset('img/musamus.png') }}" alt="banner image"
-                            class="w-100">
+                        <img loading="lazy" decoding="async" src="{{ asset('img/perpus.jpeg') }}" alt="banner image"
+                            class="w-100 shadow-md " style="border-radius:20px;">
                     </div>
                 </div>
             </div>
