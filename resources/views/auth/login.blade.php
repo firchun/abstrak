@@ -21,7 +21,7 @@
                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                     <circle cx="12" cy="7" r="4"></circle>
                                 </svg>
-                                <input id="email" name="identity" type="text" class="form-control"
+                                <input id="identity" name="identity" type="number" class="form-control"
                                     placeholder="NPM/NIP">
                                 @error('identity')
                                     <span class="text-danger" role="alert">

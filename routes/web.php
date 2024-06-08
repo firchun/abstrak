@@ -55,7 +55,11 @@ Route::middleware(['auth:web', 'role:UPT'])->group(function () {
 });
 Route::middleware(['auth:web', 'role:UPT,Admin'])->group(function () {
     Route::get('/laporan/pengajuan', [LaporanController::class, 'pengajuan'])->name('laporan.pengajuan');
+    Route::get('/laporan/excel-pengajuan', [LaporanController::class, 'exportPengajuan'])->name('laporan.excel-pengajuan');
+    Route::get('/laporan/pdf-pengajuan', [LaporanController::class, 'pdfPengajuan'])->name('laporan.pdf-pengajuan');
     Route::get('/laporan/pembayaran', [LaporanController::class, 'pembayaran'])->name('laporan.pembayaran');
+    Route::get('/laporan/excel-pembayaran', [LaporanController::class, 'exportPembayaran'])->name('laporan.excel-pembayaran');
+    Route::get('/laporan/pdf-pembayaran', [LaporanController::class, 'pdfPembayaran'])->name('laporan.pdf-pembayaran');
 });
 Route::middleware(['auth:web', 'role:Mahasiswa'])->group(function () {
     //riwayat

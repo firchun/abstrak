@@ -9,11 +9,16 @@
                 <span class="d-none d-sm-inline-block">Refresh Data</span>
             </span>
         </button>
-        <button class="btn btn-danger export-pdf" type="button">
+        <a href="{{ route('laporan.excel-pembayaran') }}" class="btn btn-success" type="button">
+            <span>
+                <i class="bx bxs-file-export"></i> Export Execl
+            </span>
+        </a>
+        <a target="__blank" href="{{ route('laporan.pdf-pembayaran') }}" class="btn btn-danger " type="button">
             <span>
                 <i class="bx bxs-file-export"></i> Export PDF
             </span>
-        </button>
+        </a>
 
     </div>
     <div class="widget-content widget-content-area br-6">
