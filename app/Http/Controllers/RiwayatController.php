@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Abstrak;
 use App\Models\FileAbstrak;
 use App\Models\Pembayaran;
+use App\Models\Pemeriksaan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -33,7 +34,10 @@ class RiwayatController extends Controller
             })
             ->addColumn('file_abstrak', function ($riwayat) {
                 $file = FileAbstrak::where('id_abstrak', $riwayat->id)->latest()->first();
-                return '<a target="__blank" href="' . Storage::url($file->file) . '" class="btn btn-sm btn-success">Lihat File</a>';
+                $file_hasil = Pemeriksaan::where('id_abstrak', $riwayat->id)->where('hasil', 'Selesai')->latest()->first();
+                $btn_file_pengajuan = '<a target="__blank" href="' . Storage::url($file->file) . '" class="btn btn-sm btn-success m-1">File diajukan</a>';
+                $btn_file_hasil = '<a target="__blank" href="' . Storage::url($file_hasil->file) . '" class="btn btn-sm btn-primary m-1">File Hasil</a>';
+                return $btn_file_pengajuan . ($file_hasil ? $btn_file_hasil : '');
             })
             ->addColumn('file_pembayaran', function ($riwayat) {
                 $pembayaran = Pembayaran::where('id_abstrak', $riwayat->id)->latest()->first();

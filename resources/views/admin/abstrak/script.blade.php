@@ -34,7 +34,7 @@
                         data: 'status',
                         name: 'status'
                     },
-                  
+
                     {
                         data: 'action',
                         name: 'action'
@@ -53,11 +53,12 @@
                             $('#bukaFileAbstrak').hide();
                             $('#textStatus').show();
                             $('#formulir').hide();
-                        } else if(response.status_file == 1){
+                        } else if (response.status_file == 1) {
                             $('#bukaFileAbstrak').attr('href', response.file_url);
+                            $('#bukaFileAbstrakStaff').attr('href', response.file_url_staff);
                             $('#textStatus').hide();
                             $('#formulir').hide();
-                        }else{
+                        } else {
                             $('#bukaFileAbstrak').attr('href', response.file_url);
                             $('#textStatus').hide();
                             $('#formulir').show();
@@ -76,14 +77,25 @@
                 var id_file = $('#idFile').val();
                 var hasil = $('#selectHasil').val();
                 var catatan = $('#catatanHasil').val();
+                var file = document.getElementById('fileHasilPemeriksaan').files[0];
+
+                var formData = new FormData();
+
+
+                formData.append('id_file', id_file);
+                formData.append('hasil', hasil);
+                formData.append('catatan', catatan);
+                formData.append('file', file);
+
                 $.ajax({
                     type: 'POST',
                     url: '/abstrak/hasil-periksa',
-                    data: {
-                        id_file: id_file,
-                        hasil: hasil,
-                        catatan: catatan,
-                        _token: $('meta[name="csrf-token"]').attr('content')
+                    processData: false,
+                    contentType: false,
+                    cache: false,
+                    data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     success: function(response) {
                         alert(response.message);
@@ -94,7 +106,8 @@
                     }
                 });
             });
-           
+
+
         });
     </script>
 @endpush

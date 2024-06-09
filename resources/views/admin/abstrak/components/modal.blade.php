@@ -10,16 +10,28 @@
             <div class="modal-body">
                 <!-- Form for Create and Edit -->
                 <div class="mb-3">
-                    <label>File Astrak</label><br>
-                    <a href="" class="btn btn-success" id="bukaFileAbstrak" target="__blank">Buka File Abstrak</a>
+                    <label>File Pengajuan Abstrak</label><br>
+                    <a href="" class="btn btn-success" id="bukaFileAbstrak" target="__blank">Buka File
+                        Abstrak</a>
                     <span class="text-danger" id="textStatus" style="display: none;">Menunggu Upload Ulang</span>
+                </div>
+                <div class="mb-3">
+                    <label>File Hasil Abstrak</label><br>
+                    <a href="" class="btn btn-primary" id="bukaFileAbstrakStaff" target="__blank">Buka File
+                        Abstrak</a>
                 </div>
                 <hr>
                 <div class="" id="formulir">
 
                     <h5>Hasil pemeriksaan</h5>
-                    <form>
+                    <form enctype="multipart/form-data">
                         <input type="hidden" id="idFile" value="">
+                        <div class="mb-3">
+                            <label>File hasil pemeriksaan <span class="text-warning">(Upload jika hasil telah
+                                    selesai )</span></label>
+                            <input type="file" accept="aplication/pdf" name="file" class="form-control"
+                                id="fileHasilPemeriksaan">
+                        </div>
                         <div class="mb-3">
                             <label>Hasil</label>
                             <select id="selectHasil" name="hasil" class="form-control" required>
@@ -31,7 +43,8 @@
                             <label>Catatan</label>
                             <textarea id="catatanHasil" name="catatan" class="form-control">-</textarea>
                         </div>
-                        <button type="button" class="btn btn-primary" id="updateHasil">Update Hasil Pemeriksaan</button>
+                        <button type="button" class="btn btn-primary" id="updateHasil">Update Hasil
+                            Pemeriksaan</button>
                     </form>
                 </div>
             </div>
@@ -41,4 +54,3 @@
         </div>
     </div>
 </div>
-

@@ -144,12 +144,13 @@ class AbstrakController extends Controller
             $status->status = 'Pemeriksaan oleh staff : ' . Auth::user()->name;
             $status->save();
         }
-
+        $pemeriksaan = Pemeriksaan::where('id_abstrak', $id)->where('hasil', 'Selesai')->latest()->first();
         $abstrak = Abstrak::find($id);
         $latestFile = $abstrak->file()->latest()->first();
         $abstrak['status_file'] = $latestFile->status;
         $abstrak['id_file'] = $latestFile->id;
         $abstrak['file_url'] = Storage::url($latestFile->file);
+        $abstrak['file_url_staff'] = Storage::url($pemeriksaan->file);
         return response()->json($abstrak);
     }
     public function hasilPeriksa(Request $request)
@@ -157,6 +158,10 @@ class AbstrakController extends Controller
         $hasilValue = $request->input('hasil');
         $catatan = $request->input('catatan');
         $id_file = $request->input('id_file');
+        //file
+        $file = $request->file('file');
+        $filename = Str::random(32) . '.' . $file->getClientOriginalExtension();
+        $path = $file->storeAs('public/file', $filename);
 
         $file_abstrak = FileAbstrak::find($id_file);
         $file_abstrak->status = ($hasilValue == 'Selesai') ? 1 : 2;
@@ -168,6 +173,7 @@ class AbstrakController extends Controller
         $pemeriksaan = new Pemeriksaan();
         $pemeriksaan->hasil = $hasilValue;
         $pemeriksaan->catatan = $catatan;
+        $pemeriksaan->file = $path;
         $pemeriksaan->id_staff = Auth::user()->id;
         $pemeriksaan->id_abstrak = $file_abstrak->id_abstrak;
         $pemeriksaanSaved = $pemeriksaan->save();

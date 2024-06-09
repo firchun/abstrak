@@ -7,6 +7,10 @@
     if ($cek_pengajuan != 0) {
         $file_abstrak = $abstrak->file()->latest()->first();
         $latestFile = $abstrak->file()->latest()->first()->file;
+        $pemeriksaan = App\Models\Pemeriksaan::where('id_abstrak', $abstrak->id)
+            ->where('hasil', 'Selesai')
+            ->latest()
+            ->first();
         if ($file_abstrak) {
             $latestFileStatus = $file_abstrak->status;
         } else {
@@ -52,7 +56,7 @@
                             <p>Lembar Pengesahan :</p>
                             <a href="{{ Storage::url($abstrak->file_lembar_pengesahan) }}" target="__blank"
                                 class="btn btn-primary btn-sm">File Lembar Pengesahan</a>
-                            <p>File Abstrak :</p>
+                            <p>File pengajuan Abstrak :</p>
                             @if ($file_abstrak->status == 2)
                                 <form action="{{ route('abstrak.upload-revisi') }}" method="POST"
                                     enctype="multipart/form-data" class="mb-4">
@@ -67,7 +71,13 @@
                                 <a href="{{ Storage::url($latestFile) }}" target="__blank"
                                     class="btn btn-success btn-sm">File Abstrak</a>
                             @endif
-
+                            <p>File Hasil Abstrak :</p>
+                            @if ($pemeriksaan)
+                                <a href="{{ Storage::url($pemeriksaan->file) }}" target="__blank"
+                                    class="btn btn-primary btn-sm">File Abstrak</a>
+                            @else
+                                <span class="text-muted">Menunggu Hasil pemeriksaan</span>
+                            @endif
                         </div>
                         <div class="inv-detail">
                             <p>Status Pengajuan:</p>
