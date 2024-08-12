@@ -22,7 +22,7 @@ class PembayaranController extends Controller
         $validatedData = $request->validate([
             'id_abstrak' => 'required',
             'jumlah' => 'required',
-            'file' => 'required|file|mimes:pdf',
+            'file' => 'required|file|mimes:pdf|max:2048',
         ]);
 
         if ($request->hasFile('file')) {

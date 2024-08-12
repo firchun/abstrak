@@ -49,6 +49,8 @@
                     type: 'GET',
                     url: '/abstrak/periksa/' + id,
                     success: function(response) {
+
+
                         if (response.status_file == 2) {
                             $('#bukaFileAbstrak').hide();
                             $('#textStatus').show();

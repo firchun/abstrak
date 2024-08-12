@@ -43,12 +43,19 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                        <li class="nav-item"> <a class="nav-link" href="{{ url('/') }}">Home</a>
+                        <li class="nav-item {{ request()->is('/') ? 'active' : '' }}"> <a class="nav-link"
+                                href="{{ url('/') }}">Home</a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="#syarat">Syarat Pengajuan</a>
+                        <li class="nav-item {{ request()->is('/#syarat') ? 'active' : '' }}"> <a class="nav-link"
+                                href="{{ request()->is('/') ? '#syarat' : '/#syarat' }}">Syarat Pengajuan</a>
                         </li>
-                        <li class="nav-item"> <a class="nav-link" href="#alur">Alur Pengajuan</a>
+                        <li class="nav-item {{ request()->is('/#alur') ? 'active' : '' }}"> <a class="nav-link"
+                                href="{{ request()->is('/') ? '#alur' : '/#alur' }}">Alur Pengajuan</a>
                         </li>
+                        <li class="nav-item {{ request()->is('tentang') ? 'active' : '' }}">
+                            <a class="nav-link" href="{{ url('/tentang') }}">Tentang UPT</a>
+                        </li>
+
                     </ul>
                     @guest
                         <a href="{{ route('login') }}" class="btn btn-outline-primary">Log In</a>

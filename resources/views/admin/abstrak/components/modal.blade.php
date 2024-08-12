@@ -1,6 +1,6 @@
 <!-- Modal for Create and Edit -->
 <div class="modal fade" id="periksa" tabindex="-1" aria-labelledby="UsersModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="userModalLabel">Pemeriksaan</h5>
@@ -28,7 +28,7 @@
                         <input type="hidden" id="idFile" value="">
                         <div class="mb-3">
                             <label>File hasil pemeriksaan <span class="text-warning">(Upload jika hasil telah
-                                    selesai )</span></label>
+                                    selesai )(2 MB)</span></label>
                             <input type="file" accept="aplication/pdf" name="file" class="form-control"
                                 id="fileHasilPemeriksaan">
                         </div>

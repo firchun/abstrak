@@ -56,6 +56,14 @@
                         </div>
                     </a>
                 </li>
+                <li class="menu {{ request()->is('jurusan') ? 'active' : '' }}">
+                    <a href="{{ url('/jurusan') }}" aria-expanded="false" class="dropdown-toggle">
+                        <div class="">
+                            <i class="bx bx-folder bx-sm" style="vertical-align: middle;"></i>
+                            <span>Jurusan</span>
+                        </div>
+                    </a>
+                </li>
                 <li class="menu menu-heading">
                     <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -121,7 +129,7 @@
                     </a>
                 </li>
             @endif
-            @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'UPT')
+            @if (Auth::user()->role == 'Admin')
                 <li class="menu menu-heading">
                     <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -137,14 +145,14 @@
                         </div>
                     </a>
                 </li>
-                <li class="menu {{ request()->is('laporan/pembayaran') ? 'active' : '' }}">
+                {{-- <li class="menu {{ request()->is('laporan/pembayaran') ? 'active' : '' }}">
                     <a href="{{ url('/laporan/pembayaran') }}" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <i class="bx bx-folder bx-sm" style="vertical-align: middle;"></i>
                             <span>Laporan pembayaran</span>
                         </div>
                     </a>
-                </li>
+                </li> --}}
             @endif
             <li class="menu menu-heading">
                 <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

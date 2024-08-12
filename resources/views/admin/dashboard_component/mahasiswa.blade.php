@@ -125,7 +125,7 @@
                             <input type="number" class="form-control form-control-sm" name="jumlah" required>
                         </div>
                         <div class="mb-3">
-                            <label>Bukti Bayar (PDF)</label>
+                            <label>Bukti Bayar (PDF) (2MB)</label>
                             <input type="file" class="form-control" name="file" required accept="application/pdf">
                         </div>
                         <button type="submit" class="btn btn-primary btn-sm">Kirim</button>
@@ -209,17 +209,29 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label>File Lembar Pengesahan <small>(Upload file PDF) <span
+                        <label for="formJurusan" class="form-label">Pilih Jurusan <span
+                                class="text-danger">*</span></label>
+                        <select name="id_jurusan" class="form-control" required>
+                            @foreach (App\Models\Jurusan::all() as $item)
+                                <option value="{{ $item->id }}">
+                                    {{ $item->jurusan }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label>File Lembar Pengesahan <small>(Upload file PDF) (2MB) <span
                                     class="text-danger">*</span></small></label>
                         <input type="file" name="file_lembar_pengesahan" class="form-control"
                             accept="application/pdf" required>
                     </div>
                     <div class="mb-3">
-                        <label>File Abstrak <small>(Upload file PDF)</small><span class="text-danger">*</span></label>
+                        <label>File Abstrak <small>(Upload file PDF) (2MB)</small><span
+                                class="text-danger">*</span></label>
                         <input type="file" name="file" class="form-control" accept="application/pdf" required>
                     </div>
                     <div class="mb-3">
-                        <label>Bukti Pembayaran <small>(Upload file PDF)</small><span
+                        <label>Bukti Pembayaran <small>(Upload file PDF) (2MB)</small><span
                                 class="text-danger">*</span></label>
                         <input type="file" name="file_pembayaran" class="form-control" accept="application/pdf"
                             required>

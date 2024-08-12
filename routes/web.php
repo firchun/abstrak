@@ -4,6 +4,7 @@ use App\Http\Controllers\AbstrakController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FakultasController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\ProfileController;
@@ -28,6 +29,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/tentang', function () {
+    return view('tentang_upt');
+});
+Route::get('/panduan', function () {
+    return view('panduan_pendaftaran');
+});
 
 Auth::routes();
 Route::middleware(['auth:web'])->group(function () {
@@ -41,6 +48,9 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
+Route::middleware(['auth:web', 'role:UPT,Admin'])->group(function () {
+    Route::get('/abstrak-datatable', [AbstrakController::class, 'getAbstrakDataTable']);
+});
 Route::middleware(['auth:web', 'role:UPT'])->group(function () {
     //pembayaran
     Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
@@ -51,7 +61,6 @@ Route::middleware(['auth:web', 'role:UPT'])->group(function () {
     Route::get('/abstrak', [AbstrakController::class, 'index'])->name('abstrak');
     Route::get('/abstrak/periksa/{id}', [AbstrakController::class, 'periksa'])->name('abstrak.periksa');
     Route::post('/abstrak/hasil-periksa', [AbstrakController::class, 'hasilPeriksa'])->name('abstrak.hasil-periksa');
-    Route::get('/abstrak-datatable', [AbstrakController::class, 'getAbstrakDataTable']);
 });
 Route::middleware(['auth:web', 'role:UPT,Admin'])->group(function () {
     Route::get('/laporan/pengajuan', [LaporanController::class, 'pengajuan'])->name('laporan.pengajuan');
@@ -69,6 +78,13 @@ Route::middleware(['auth:web', 'role:Mahasiswa'])->group(function () {
     Route::post('/pembayaran/store', [PembayaranController::class, 'store'])->name('pembayaran.store');
 });
 Route::middleware(['auth:web', 'role:Admin'])->group(function () {
+    //jurusan managemen
+    Route::get('/jurusan', [JurusanController::class, 'index'])->name('jurusan');
+    Route::get('/jurusan-datatable', [JurusanController::class, 'getJurusanDataTable']);
+    Route::post('/jurusan/store',  [JurusanController::class, 'store'])->name('jurusan.store');
+    Route::get('/jurusan/edit/{id}',  [JurusanController::class, 'edit'])->name('jurusan.edit');
+    Route::delete('/jurusan/delete/{id}',  [JurusanController::class, 'destroy'])->name('jurusan.delete');
+    // fakultas managemen 
     Route::get('/fakultas', [FakultasController::class, 'index'])->name('fakultas');
     Route::get('/fakultas-datatable', [FakultasController::class, 'getFakultasDataTable']);
     Route::post('/fakultas/store',  [FakultasController::class, 'store'])->name('fakultas.store');

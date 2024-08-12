@@ -77,8 +77,7 @@
                             <div class="division">
                                 <span>OR</span>
                             </div>
-                            <p class="signup-link">Not registered ? <a href="{{ route('register') }}">Create an
-                                    account</a></p>
+                            <p class="signup-link">Belum memiliki akun ? <a href="{{ route('register') }}">Buat akun</a></p>
 
                         </div>
                     </form>

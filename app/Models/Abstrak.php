@@ -21,8 +21,12 @@ class Abstrak extends Model
     {
         return $this->belongsTo(Fakultas::class, 'id_fakultas');
     }
+    public function jurusan(): BelongsTo
+    {
+        return $this->belongsTo(Jurusan::class, 'id_jurusan');
+    }
     public function file(): HasMany
     {
-        return $this->hasMany(FileAbstrak::class, 'id_abstrak','id');
+        return $this->hasMany(FileAbstrak::class, 'id_abstrak', 'id');
     }
 }

@@ -30,9 +30,9 @@ class AbstrakController extends Controller
             'id_mahasiswa' => 'required',
             'id_fakultas' => 'required',
             'judul' => 'required',
-            'file' => 'required|file|mimes:pdf',
-            'file_lembar_pengesahan' => 'required|file|mimes:pdf',
-            'file_pembayaran' => 'required|file|mimes:pdf',
+            'file' => 'required|file|mimes:pdf|max:2048',
+            'file_lembar_pengesahan' => 'required|file|mimes:pdf|max:2048',
+            'file_pembayaran' => 'required|file|mimes:pdf|max:2048',
         ]);
         // dd($request);
 
@@ -85,7 +85,7 @@ class AbstrakController extends Controller
     }
     public function getAbstrakDataTable()
     {
-        $abstrak = Abstrak::with(['mahasiswa', 'fakultas', 'file'])->orderByDesc('id');
+        $abstrak = Abstrak::with(['mahasiswa', 'fakultas', 'file', 'jurusan'])->orderByDesc('id');
 
         return DataTables::of($abstrak)
             ->addColumn('action', function ($abstrak) {
@@ -147,10 +147,10 @@ class AbstrakController extends Controller
         $pemeriksaan = Pemeriksaan::where('id_abstrak', $id)->where('hasil', 'Selesai')->latest()->first();
         $abstrak = Abstrak::find($id);
         $latestFile = $abstrak->file()->latest()->first();
-        $abstrak['status_file'] = $latestFile->status;
-        $abstrak['id_file'] = $latestFile->id;
-        $abstrak['file_url'] = Storage::url($latestFile->file);
-        $abstrak['file_url_staff'] = Storage::url($pemeriksaan->file);
+        $abstrak['status_file'] = $latestFile && $latestFile->status ? $latestFile->status : '';
+        $abstrak['id_file'] = $latestFile && $latestFile->status ? $latestFile->id : '';
+        $abstrak['file_url'] = $latestFile && $latestFile->status ?  Storage::url($latestFile->file) : '';
+        $abstrak['file_url_staff'] = $pemeriksaan && $pemeriksaan->file ? Storage::url($pemeriksaan->file) : '';
         return response()->json($abstrak);
     }
     public function hasilPeriksa(Request $request)
@@ -194,7 +194,7 @@ class AbstrakController extends Controller
     {
         $validatedData = $request->validate([
             'id_abstrak' => 'required',
-            'file' => 'required|file|mimes:pdf',
+            'file' => 'required|file|mimes:pdf|max:2048',
         ]);
 
         if ($request->hasFile('file')) {
