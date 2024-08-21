@@ -77,7 +77,16 @@
                             <div class="division">
                                 <span>OR</span>
                             </div>
-                            <p class="signup-link">Belum memiliki akun ? <a href="{{ route('register') }}">Buat akun</a></p>
+                            @if (Route::has('password.request'))
+                                <p class="signup-link mb-0">
+                                    Lupa password anda ?
+                                    <a class="" href="{{ route('password.request') }}">
+                                        {{ __('Lupa password') }}
+                                    </a>
+                                </p>
+                            @endif
+                            <p class="signup-link mt-2">Belum memiliki akun ? <a href="{{ route('register') }}">Buat
+                                    akun</a></p>
 
                         </div>
                     </form>

@@ -83,10 +83,15 @@ class AbstrakController extends Controller
         session()->flash('error', 'Gagal menyimpan abstrak');
         return back()->withInput();
     }
-    public function getAbstrakDataTable()
+    public function getAbstrakDataTable(Request $request)
     {
         $abstrak = Abstrak::with(['mahasiswa', 'fakultas', 'file', 'jurusan'])->orderByDesc('id');
-
+        if ($request->has('id_fakultas') && $request->input('id_fakultas') != '') {
+            $abstrak->where('id_fakultas', $request->input('id_fakultas'));
+        }
+        if ($request->has('id_jurusan') && $request->input('id_jurusan') != '') {
+            $abstrak->where('id_jurusan', $request->input('id_jurusan'));
+        }
         return DataTables::of($abstrak)
             ->addColumn('action', function ($abstrak) {
                 return view('admin.abstrak.components.actions', compact('abstrak'));

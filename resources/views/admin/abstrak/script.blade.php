@@ -1,11 +1,18 @@
 @push('js')
     <script>
         $(function() {
-            $('#datatable-abstrak').DataTable({
+            table = $('#datatable-abstrak').DataTable({
                 processing: true,
                 serverSide: false,
                 responsive: true,
-                ajax: '{{ url('abstrak-datatable') }}',
+                ajax: {
+                    url: '{{ url('abstrak-datatable') }}',
+                    data: function(d) {
+                        d.selectJurusan = $('#selectJurusan').val();
+                        d.selectFakultas = $('#selectFakultas').val();
+                        d.selectStatus = $('#selectStatus').val();
+                    }
+                },
                 columns: [{
                         data: 'id',
                         name: 'id'
@@ -41,8 +48,17 @@
                     }
                 ]
             });
+
             $('.refresh').click(function() {
-                $('#datatable-abstrak').DataTable().ajax.reload();
+                table.ajax.reload();
+            });
+
+            $('#filter').click(function() {
+                table.ajax.url('{{ url('abstrak-datatable') }}?' + $.param({
+                    id_jurusan: $('#selectJurusan').val(),
+                    id_fakultas: $('#selectFakultas').val(),
+                    status: $('#selectStatus').val(),
+                })).load();
             });
             window.pemeriksaanAbstrak = function(id) {
                 $.ajax({
@@ -107,6 +123,24 @@
                         alert('Terjadi kesalahan: ' + xhr.responseText);
                     }
                 });
+            });
+            $('#export-pdf').click(function() {
+                var queryParams = $.param({
+                    id_jurusan: $('#selectJurusan').val(),
+                    id_fakultas: $('#selectFakultas').val(),
+                    status: $('#selectStatus').val(),
+                });
+                var exportUrl = '{{ route('laporan.pdf-pengajuan') }}?' + queryParams;
+                window.open(exportUrl, '_blank');
+            });
+            $('#export-excel').click(function() {
+                var queryParams = $.param({
+                    id_jurusan: $('#selectJurusan').val(),
+                    id_fakultas: $('#selectFakultas').val(),
+                    status: $('#selectStatus').val(),
+                });
+                var exportUrl = '{{ route('laporan.excel-pengajuan') }}?' + queryParams;
+                window.open(exportUrl, '_blank');
             });
 
 

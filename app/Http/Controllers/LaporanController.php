@@ -28,13 +28,20 @@ class LaporanController extends Controller
         ];
         return view('admin.laporan.pembayaran', $data);
     }
-    public function exportPengajuan()
+    public function exportPengajuan(Request $request)
     {
         // Inisialisasi spreadsheet
         $spreadsheet = new Spreadsheet();
 
         // Ambil data Anda dari model atau sumber lain
-        $data = Abstrak::with(['mahasiswa', 'fakultas'])->get();
+        $data = Abstrak::with(['mahasiswa', 'fakultas']);
+        if ($request->has('id_fakultas') && $request->input('id_fakultas') != '') {
+            $data->where('id_fakultas', $request->input('id_fakultas'));
+        }
+        if ($request->has('id_jurusan') && $request->input('id_jurusan') != '') {
+            $data->where('id_jurusan', $request->input('id_jurusan'));
+        }
+        $data = $data->get();
         $collection = $data->map(function ($item) {
             return [
                 'No ' => $item->id,
@@ -86,12 +93,23 @@ class LaporanController extends Controller
 
         return $response;
     }
-    public function exportPembayaran()
+    public function exportPembayaran(Request $request)
     {
 
         $spreadsheet = new Spreadsheet();
 
-        $data = Pembayaran::with(['abstrak'])->get();
+        $data = Pembayaran::with(['abstrak']);
+        if ($request->has('status') && $request->input('status') != '') {
+            $status = $request->input('status');
+            if ($status == 'menunggu') {
+                $data->where('diterima', 0);
+            } elseif ($status == 'diterima') {
+                $data->where('diterima', 1);
+            } else {
+                $data->where('diterima', '>=', 2);
+            }
+        }
+        $data = $data->get();
         $collection = $data->map(function ($item) {
             return [
                 'No ' => $item->id,
@@ -146,26 +164,42 @@ class LaporanController extends Controller
 
         return $response;
     }
-    public function pdfPengajuan()
+    public function pdfPengajuan(Request $request)
     {
-        $data = Abstrak::with(['mahasiswa', 'fakultas'])->get();
+        $data = Abstrak::with(['mahasiswa', 'fakultas']);
 
+        if ($request->has('id_fakultas') && $request->input('id_fakultas') != '') {
+            $data->where('id_fakultas', $request->input('id_fakultas'));
+        }
+        if ($request->has('id_jurusan') && $request->input('id_jurusan') != '') {
+            $data->where('id_jurusan', $request->input('id_jurusan'));
+        }
         $pdf = \PDF::loadview('admin/laporan/pdf/pengajuan', [
-            'data' => $data,
+            'data' => $data->get(),
             'title' => 'Laporan Pengajuan Abstrak',
         ])
             ->setPaper('a4', 'potrait');
         return $pdf->stream('Laporan_pengajuan_abstrak_' . date('d F Y') . '.pdf');
     }
-    public function pdfPembayaran()
+    public function pdfPembayaran(Request $request)
     {
-        $data = Pembayaran::with(['abstrak'])->get();
+        $data = Pembayaran::with(['abstrak']);
+        if ($request->has('status') && $request->input('status') != '') {
+            $status = $request->input('status');
+            if ($status == 'menunggu') {
+                $data->where('diterima', 0);
+            } elseif ($status == 'diterima') {
+                $data->where('diterima', 1);
+            } else {
+                $data->where('diterima', '>=', 2);
+            }
+        }
 
         $pdf = \PDF::loadview('admin/laporan/pdf/pembayaran', [
-            'data' => $data,
+            'data' => $data->get(),
             'title' => 'Laporan Pembayaran Abstrak',
         ])
             ->setPaper('a4', 'potrait');
-        return $pdf->stream('Laporan_pengajuan_abstrak_' . date('d F Y') . '.pdf');
+        return $pdf->stream('Laporan_pembayaran_abstrak_' . date('d F Y') . '.pdf');
     }
 }

@@ -39,6 +39,7 @@ class ProfileController extends Controller
             $user->name = $request->input('name');
             $user->identity = $request->input('identity');
             $user->no_hp = $request->input('no_hp');
+            $user->email = $request->input('email');
 
             if (!is_null($request->input('current_password'))) {
                 if (Hash::check($request->input('current_password'), $user->password)) {

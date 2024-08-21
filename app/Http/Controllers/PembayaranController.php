@@ -46,18 +46,30 @@ class PembayaranController extends Controller
         session()->flash('error', 'Gagal mengirim bukti pembayaran');
         return back()->withInput();
     }
-    public function getPembayaranDataTable()
+    public function getPembayaranDataTable(Request $request)
     {
         $pembayaran = Pembayaran::with(['abstrak'])->orderByDesc('id');
-
+        if ($request->has('status') && $request->input('status') != '') {
+            $status = $request->input('status');
+            if ($status == 'menunggu') {
+                $pembayaran->where('diterima', 0);
+            } elseif ($status == 'diterima') {
+                $pembayaran->where('diterima', 1);
+            } else {
+                $pembayaran->where('diterima', '>=', 2);
+            }
+        }
         return DataTables::of($pembayaran)
             ->addColumn('action', function ($pembayaran) {
-                $terima = '<a href="' . url('pembayaran/terima', $pembayaran->id) . '" class="btn btn-success mx-1">terima</a>';
-                $tolak = '<a href="' . url('pembayaran/tolak', $pembayaran->id) . '" class="btn btn-danger mx-1">tolak</a>';
+                $terima = '<a href="' . url('pembayaran/terima', $pembayaran->id) . '" class="btn btn-sm btn-success m-1">terima</a>';
+                $tolak = '<a href="' . url('pembayaran/tolak', $pembayaran->id) . '" class="btn btn-sm btn-danger m-1">tolak</a>';
                 $status =  $pembayaran->diterima == 1 ? 'Telah diterima' : 'Ditolak';
                 return $pembayaran->diterima == 0 ? $terima . $tolak : $status;
             })
 
+            ->addColumn('jumlah', function ($pembayaran) {
+                return 'Rp ' . number_format($pembayaran->jumlah);
+            })
             ->addColumn('tanggal', function ($pembayaran) {
                 return $pembayaran->created_at->format('d F Y');
             })
@@ -68,7 +80,7 @@ class PembayaranController extends Controller
                 return '<strong>' . $pembayaran->abstrak->mahasiswa->name . '</strong><br><span class="text-primary">' . $pembayaran->abstrak->mahasiswa->identity . '</span>';
             })
 
-            ->rawColumns(['action', 'file', 'tanggal', 'mahasiswa'])
+            ->rawColumns(['action', 'file', 'tanggal', 'mahasiswa', 'jumlah'])
             ->make(true);
     }
     public function terima($id)

@@ -91,6 +91,14 @@
                                             placeholder="Nomor HP/WA" value="{{ old('no_hp', Auth::user()->no_hp) }}">
                                     </div>
                                 </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group  mb-3">
+                                        <label class="form-control-label" for="email">Alamat Email</label>
+                                        <input type="email" id="identity"
+                                            class="form-control  @error('email') is-invalid @enderror" name="email"
+                                            placeholder="Email address" value="{{ old('email', Auth::user()->email) }}">
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4">

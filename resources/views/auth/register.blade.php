@@ -14,7 +14,6 @@
 
                         <form id="formAuthentication" class="text-left " action="" method="POST">
                             <div class="form">
-
                                 <div id="name-field" class="field-wrapper input">
                                     <div class="d-flex justify-content-between">
                                         <label for="name">NAMA LENGKAP</label>
@@ -54,7 +53,7 @@
                                 </div>
                                 <div id="email-field" class="field-wrapper input">
                                     <div class="d-flex justify-content-between">
-                                        <label for="email">NOMOR HP/WA AKTIF</label>
+                                        <label for="email">Email Aktif</label>
                                     </div>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -63,15 +62,33 @@
                                         <circle cx="12" cy="12" r="4"></circle>
                                         <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
                                     </svg>
-                                    <input id="no_hp" name="no_hp" type="text" value="" class="form-control"
-                                        placeholder="Nomor HP">
+                                    <input id="email" name="email" type="email" value="" class="form-control"
+                                        placeholder="Email address">
+                                    @error('email')
+                                        <span class="text-danger" role="alert">
+                                            <small>{{ $message }}</small>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div id="email-field" class="field-wrapper input">
+                                    <div class="d-flex justify-content-between">
+                                        <label for="email">NOMOR HP/WA AKTIF (gunakan +62)</label>
+                                    </div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="feather feather-at-sign register">
+                                        <circle cx="12" cy="12" r="4"></circle>
+                                        <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path>
+                                    </svg>
+                                    <input id="no_hp" name="no_hp" type="text" value="+62"
+                                        class="form-control" placeholder="Nomor HP">
                                     @error('no_hp')
                                         <span class="text-danger" role="alert">
                                             <small>{{ $message }}</small>
                                         </span>
                                     @enderror
                                 </div>
-
 
                                 <div id="password-field" class="field-wrapper input mb-2">
                                     <div class="d-flex justify-content-between">

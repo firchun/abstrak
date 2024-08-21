@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: 'times new roman';
-            font-size: 16px;
+            font-size: 12px;
         }
 
         .page_break {
@@ -56,32 +56,35 @@
             <tr>
                 <td>Tanggal Cetak</td>
                 <td style="width: 15px" class="text-center">:</td>
-                <td>{{ date('d F Y') }}</td>
+                <td>{{ date('d/m/Y') }}</td>
             </tr>
 
         </table>
         <div class="table-responsive">
             <table class="table_custom" style="width: 100%;">
                 <thead>
-                    <tr>
-                        <th style="width: 15px;">ID</th>
+                    <tr style="text-align: center;">
+                        <th style="width: 15px;">No</th>
                         <th>Tanggal</th>
                         <th>Fakultas</th>
-                        <th>Mahasiswa</th>
-                        <th>Judul</th>
+                        <th>Nama</th>
+                        <th>NPM</th>
+                        <th>Judul Penelitian</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     @foreach ($data as $item)
                         <tr>
-                            <td>{{ $item->id }}</td>
-                            <td>{{ $item->created_at->format('d F Y') }}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td style="width: 70px;">{{ $item->created_at->format('d/m/Y') }}</td>
                             <td>{{ $item->fakultas->fakultas }}</td>
-                            <td>{{ $item->mahasiswa->name }}<br>
-                                <small>{{ $item->mahasiswa->identity }}</small>
+                            <td style="width: 150px;">{{ $item->mahasiswa->name }}
                             </td>
-                            <td>{{ $item->judul }}</td>
+                            <td>{{ $item->mahasiswa->identity }}
+                            </td>
+                            <td style="width:
+                                300px;">{{ $item->judul }}</td>
                         </tr>
                     @endforeach
                 </tbody>
