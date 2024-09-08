@@ -30,6 +30,10 @@
                         name: 'fakultas.fakultas'
                     },
                     {
+                        data: 'jurusan.jurusan',
+                        name: 'jurusan.jurusan'
+                    },
+                    {
                         data: 'mahasiswa',
                         name: 'mahasiswa'
                     },
@@ -65,10 +69,10 @@
                     type: 'GET',
                     url: '/abstrak/periksa/' + id,
                     success: function(response) {
-
+                        // console.log(response);
 
                         if (response.status_file == 2) {
-                            $('#bukaFileAbstrak').hide();
+                            $('#bukaFileAbstrak').show();
                             $('#textStatus').show();
                             $('#formulir').hide();
                         } else if (response.status_file == 1) {

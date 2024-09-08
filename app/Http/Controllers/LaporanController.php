@@ -34,7 +34,7 @@ class LaporanController extends Controller
         $spreadsheet = new Spreadsheet();
 
         // Ambil data Anda dari model atau sumber lain
-        $data = Abstrak::with(['mahasiswa', 'fakultas']);
+        $data = Abstrak::with(['mahasiswa', 'fakultas', 'jurusan']);
         if ($request->has('id_fakultas') && $request->input('id_fakultas') != '') {
             $data->where('id_fakultas', $request->input('id_fakultas'));
         }
@@ -50,17 +50,19 @@ class LaporanController extends Controller
                 'Nama Mahasiswa' => $item->mahasiswa->name,
                 'NPM Mahasiswa' => $item->mahasiswa->identity,
                 'Fakultas' => $item->fakultas->fakultas,
+                'Jurusan' => $item->jurusan->jurusan,
             ];
         });
         $header = [
             'ID',
             'Tanggal',
+            'Fakultas',
+            'Jurusan',
             'Judul',
             'Nama Mahasiswa',
             'NPM Mahasiswa',
-            'Fakultas',
         ];
-        $spreadsheet->getActiveSheet()->getStyle('A1:F1')->applyFromArray([
+        $spreadsheet->getActiveSheet()->getStyle('A1:G1')->applyFromArray([
             'font' => [
                 'bold' => true,
                 'size' => 12,

@@ -153,8 +153,8 @@ class AbstrakController extends Controller
         $abstrak = Abstrak::find($id);
         $latestFile = $abstrak->file()->latest()->first();
         $abstrak['status_file'] = $latestFile && $latestFile->status ? $latestFile->status : '';
-        $abstrak['id_file'] = $latestFile && $latestFile->status ? $latestFile->id : '';
-        $abstrak['file_url'] = $latestFile && $latestFile->status ?  Storage::url($latestFile->file) : '';
+        $abstrak['id_file'] = $latestFile && $latestFile->id ? $latestFile->id : '';
+        $abstrak['file_url'] = $latestFile && $latestFile->file ?  Storage::url($latestFile->file) : '';
         $abstrak['file_url_staff'] = $pemeriksaan && $pemeriksaan->file ? Storage::url($pemeriksaan->file) : '';
         return response()->json($abstrak);
     }

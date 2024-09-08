@@ -65,6 +65,7 @@
                         <th>WA</th>
                         <th>Tanggal</th>
                         <th>Fakultas</th>
+                        <th>Jurusan</th>
                         <th>Mahasiswa</th>
                         <th>Judul</th>
                         <th>Status</th>
@@ -77,6 +78,7 @@
                         <th>WA</th>
                         <th>Tanggal</th>
                         <th>Fakultas</th>
+                        <th>Jurusan</th>
                         <th>Mahasiswa</th>
                         <th>Judul</th>
                         <th>Status</th>

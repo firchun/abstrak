@@ -67,6 +67,7 @@
                         <th style="width: 15px;">No</th>
                         <th>Tanggal</th>
                         <th>Fakultas</th>
+                        <th>Jurusan</th>
                         <th>Nama</th>
                         <th>NPM</th>
                         <th>Judul Penelitian</th>
@@ -79,6 +80,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td style="width: 70px;">{{ $item->created_at->format('d/m/Y') }}</td>
                             <td>{{ $item->fakultas->fakultas }}</td>
+                            <td>{{ $item->jurusan->jurusan }}</td>
                             <td style="width: 150px;">{{ $item->mahasiswa->name }}
                             </td>
                             <td>{{ $item->mahasiswa->identity }}
