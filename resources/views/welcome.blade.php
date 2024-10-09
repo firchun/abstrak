@@ -4,14 +4,14 @@
     <section class="banner bg-tertiary position-relative overflow-hidden">
         <div class="container">
             <div class="row align-items-center justify-content-center">
-                <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="col-lg-5 mb-5 mb-lg-0">
                     <div class="block text-center text-lg-start pe-0 pe-xl-5">
-                        <h1 class="text-capitalize mb-4">Sistem Informasi Pelayanan Abstak UPT Bahasa Universitas Musamus
-                            Merauke</h1>
+                        <h2 class="text-capitalize mb-4">Sistem Informasi Pelayanan Abstak UPT Bahasa Universitas Musamus
+                            Merauke</h2>
 
                     </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-7">
                     <div class="ps-lg-5 text-center">
                         <img loading="lazy" decoding="async" src="{{ asset('img/perpus.jpeg') }}" alt="banner image"
                             class="w-100 shadow-md " style="border-radius:20px;">
@@ -73,7 +73,7 @@
                 <div class="col-lg-5">
                     <div class="section-title">
                         <p class="text-primary text-uppercase fw-bold mb-3">UPT BAHASA UNIVERSITAS MUSAMUS</p>
-                        <h1>Syarat Pengajuan Abstrak</h1>
+                        <h2>Syarat Pengajuan Abstrak</h2>
                         <div class="content mb-0 mt-4">
                             <p>Untuk mengajukan abstrak pada UPT Bahasa Universitas Musamus Merauke, mahasiswa/mahasiswi
                                 diwajibkan untuk mengikuti persyaratan-persyaratan yang berlaku dalam pengajuan abstrak..
@@ -126,7 +126,7 @@
                 <div class="col-12">
                     <div class="section-title text-center mb-5 pb-2">
                         <p class="text-primary text-uppercase fw-bold mb-3">UPT BAHASA UNIVERSITAS MUSAMUS</p>
-                        <h1>Alur Pengajuan Abstrak</h1>
+                        <h2>Alur Pengajuan Abstrak</h2>
                     </div>
                 </div>
                 <div class="col-12">

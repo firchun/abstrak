@@ -57,7 +57,7 @@ Route::middleware(['auth:web', 'role:UPT'])->group(function () {
     Route::get('/pembayaran/terima/{id}', [PembayaranController::class, 'terima'])->name('pembayaran.terima');
     Route::get('/pembayaran/tolak/{id}', [PembayaranController::class, 'tolak'])->name('pembayaran.tolak');
     Route::get('/pembayaran-datatable', [PembayaranController::class, 'getPembayaranDataTable']);
-    //pengajuan abstrak 
+    //pengajuan abstrak
     Route::get('/abstrak', [AbstrakController::class, 'index'])->name('abstrak');
     Route::get('/abstrak/periksa/{id}', [AbstrakController::class, 'periksa'])->name('abstrak.periksa');
     Route::post('/abstrak/hasil-periksa', [AbstrakController::class, 'hasilPeriksa'])->name('abstrak.hasil-periksa');

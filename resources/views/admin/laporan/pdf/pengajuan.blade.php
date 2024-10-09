@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: 'times new roman';
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .page_break {
@@ -71,6 +71,7 @@
                         <th>Nama</th>
                         <th>NPM</th>
                         <th>Judul Penelitian</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
 
@@ -87,6 +88,24 @@
                             </td>
                             <td style="width:
                                 300px;">{{ $item->judul }}</td>
+                            <td>
+                                @php
+                                    $status = App\Models\StatusAbstrak::where('id_abstrak', $item->id)
+                                        ->latest()
+                                        ->first()->status;
+
+                                    $status_abstrak = '';
+                                    if ($status == 'Pengajuan') {
+                                        $status_abstrak = 'Pengajuan';
+                                    } elseif ($status == 'Hasil pemeriksaan: Selesai, Selamat...') {
+                                        $status_abstrak = 'Selesai';
+                                    } else {
+                                        $status_abstrak = 'Revisi';
+                                    }
+                                    echo $status_abstrak;
+                                @endphp
+
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

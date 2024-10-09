@@ -6,11 +6,11 @@
     <div class="jumbotron text-center" style="margin-top:20px !important; padding-bottom:30px; margin-bottom:10px;">
         <img src="{{ asset('img/musamus.png') }}" style="height: 100px;">
         <p>Selamat datang di </p>
-        <h2>Sistem Informasi Pelayanan Abstrak</h2>
-        <h4>Universitas Musamus</h4>
+        <h4>Sistem Informasi Pelayanan Abstrak</h4>
+        <h5>Universitas Musamus</h5>
     </div>
     @if (Auth::user()->role == 'Admin' || Auth::user()->role == 'UPT')
-    @include('admin.dashboard_component.grafik')
+        @include('admin.dashboard_component.grafik')
     @endif
     @if (Auth::user()->role == 'Admin')
         <div class="row justify-content-center">

@@ -180,7 +180,7 @@ class LaporanController extends Controller
             'data' => $data->get(),
             'title' => 'Laporan Pengajuan Abstrak',
         ])
-            ->setPaper('a4', 'potrait');
+            ->setPaper('a4', 'landscape');
         return $pdf->stream('Laporan_pengajuan_abstrak_' . date('d F Y') . '.pdf');
     }
     public function pdfPembayaran(Request $request)
