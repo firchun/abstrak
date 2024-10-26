@@ -151,9 +151,9 @@
                                         <div class="division">
                                             <span>OR</span>
                                         </div>
-                                        <a href="{{ url('panduan') }}" class="btn btn-outline-primary btn-lg"
+                                        {{-- <a href="{{ url('panduan') }}" class="btn btn-outline-primary btn-lg"
                                             style="width:100%;" value="">Penduan
-                                            Pendaftaran</a>
+                                            Pendaftaran</a> --}}
 
                                         <p class="signup-link">Sudah memiliki akun ? <a
                                                 href="{{ route('login') }}">Login</a></p>
