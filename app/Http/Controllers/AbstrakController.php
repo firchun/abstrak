@@ -14,11 +14,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
+use Carbon\Carbon;
 
 class AbstrakController extends Controller
 {
     public function index()
     {
+        DB::table('abstrak')
+            ->whereNull('read_at')
+            ->update(['read_at' => Carbon::now()]);
         $data = [
             'title' => 'Pengajuan Abstrak',
         ];

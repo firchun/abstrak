@@ -13,6 +13,9 @@
                         d.selectStatus = $('#selectStatus').val();
                     }
                 },
+                order: [
+                    [0, 'desc']
+                ],
                 columns: [{
                         data: 'id',
                         name: 'id'
@@ -64,6 +67,39 @@
                     status: $('#selectStatus').val(),
                 })).load();
             });
+            window.pembayaran = function(id) {
+                $('#pembayaran').modal('show');
+
+                if ($.fn.DataTable.isDataTable('#datatable-pembayaran')) {
+                    $('#datatable-pembayaran').DataTable().clear().destroy();
+                }
+
+                $('#datatable-pembayaran').DataTable({
+                    processing: true,
+                    serverSide: false,
+                    responsive: true,
+                    ajax: {
+                        url: '{{ url('pembayaran-datatable') }}' + '/' + id,
+                    },
+                    columns: [{
+                            data: 'id',
+                            name: 'id'
+                        },
+                        {
+                            data: 'tanggal',
+                            name: 'tanggal'
+                        },
+                        {
+                            data: 'file',
+                            name: 'file'
+                        },
+                        {
+                            data: 'action',
+                            name: 'action'
+                        }
+                    ]
+                });
+            };
             window.pemeriksaanAbstrak = function(id) {
                 $.ajax({
                     type: 'GET',

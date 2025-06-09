@@ -111,14 +111,14 @@
                         </div>
                     </a>
                 </li>
-                <li class="menu {{ request()->is('pembayaran') ? 'active' : '' }}">
+                {{-- <li class="menu {{ request()->is('pembayaran') ? 'active' : '' }}">
                     <a href="{{ url('/pembayaran') }}" aria-expanded="false" class="dropdown-toggle">
                         <div class="">
                             <i class="bx bx-file bx-sm" style="vertical-align: middle;"></i>
                             <span>Data pembayaran</span>
                         </div>
                     </a>
-                </li>
+                </li> --}}
             @elseif(Auth::user()->role == 'Mahasiswa')
                 <li class="menu {{ request()->is('riwayat') ? 'active' : '' }}">
                     <a href="{{ url('/riwayat') }}" aria-expanded="false" class="dropdown-toggle">

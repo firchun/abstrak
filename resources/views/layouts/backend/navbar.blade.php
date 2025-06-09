@@ -38,6 +38,31 @@
         </ul>
         <ul class="navbar-item flex-row navbar-dropdown">
             <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
+                <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="notificationDropdown"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="bx bx-bell bx-sm"></i>
+                </a>
+                <div class="dropdown-menu position-absolute" aria-labelledby="notificationDropdown"
+                    style="max-width: 150px">
+                    <div style="max-height: 80%; overflow-y: auto;">
+                        <div class="dropdown-item text-center">
+                            <strong> Notifikasi Pengajuan</strong>
+                        </div>
+                        @forelse (App\Models\Abstrak::whereNull('read_at')->get() as $read)
+                            <div class="dropdown-item">
+                                <a href="{{ route('abstrak') }}" class="d-block" style="white-space: normal;"
+                                    title="{{ $read->judul }}"> {{ $read->judul }}
+                                </a>
+                            </div>
+                        @empty
+                            <div class="dropdown-item text-mutted text-center p-2">
+                                <small>Tidak ada notifikasi baru</small>
+                            </div>
+                        @endforelse
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
                 <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"

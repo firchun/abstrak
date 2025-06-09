@@ -83,6 +83,34 @@ class PembayaranController extends Controller
             ->rawColumns(['action', 'file', 'tanggal', 'mahasiswa', 'jumlah'])
             ->make(true);
     }
+    public function getPembayaranDataTableId($id)
+    {
+        $pembayaran = Pembayaran::with(['abstrak'])->orderByDesc('id')->where('id_abstrak', $id);
+
+        return DataTables::of($pembayaran)
+            ->addColumn('action', function ($pembayaran) {
+                $terima = '<a href="' . url('pembayaran/terima', $pembayaran->id) . '" class="btn btn-sm btn-success m-1">terima</a>';
+                $tolak = '<a href="' . url('pembayaran/tolak', $pembayaran->id) . '" class="btn btn-sm btn-danger m-1">tolak</a>';
+                $status =  $pembayaran->diterima == 1 ? 'Telah diterima' : 'Ditolak';
+                return $pembayaran->diterima == 0 ? $terima . $tolak : $status;
+            })
+
+            ->addColumn('jumlah', function ($pembayaran) {
+                return 'Rp ' . number_format($pembayaran->jumlah);
+            })
+            ->addColumn('tanggal', function ($pembayaran) {
+                return $pembayaran->created_at->format('d F Y');
+            })
+            ->addColumn('file', function ($pembayaran) {
+                return '<a target="__blank" href="' . Storage::url($pembayaran->file) . '" class="btn btn-success">Lihat File</a>';
+            })
+            ->addColumn('mahasiswa', function ($pembayaran) {
+                return '<strong>' . $pembayaran->abstrak->mahasiswa->name . '</strong><br><span class="text-primary">' . $pembayaran->abstrak->mahasiswa->identity . '</span>';
+            })
+
+            ->rawColumns(['action', 'file', 'tanggal', 'mahasiswa', 'jumlah'])
+            ->make(true);
+    }
     public function terima($id)
     {
         $pembayaran = Pembayaran::find($id);

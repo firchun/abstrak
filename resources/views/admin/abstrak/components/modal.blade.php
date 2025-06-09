@@ -1,3 +1,37 @@
+<!-- Modal pembayaran -->
+<div class="modal fade" id="pembayaran" tabindex="-1" aria-labelledby="UsersModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">Pembayaran</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i
+                        class="bx bx-x"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive mb-4 mt-4">
+                    <table id="datatable-pembayaran" class="table table-hover table-bordered display">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tanggal</th>
+                                <th>File</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tanggal</th>
+                                <th>File</th>
+                                <th>Action</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Modal for Create and Edit -->
 <div class="modal fade" id="periksa" tabindex="-1" aria-labelledby="UsersModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
