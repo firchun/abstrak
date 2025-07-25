@@ -40,7 +40,11 @@
             <li class="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
                 <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="notificationDropdown"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="bx bx-bell bx-sm"></i>
+                    <div class="position-relative d-inline-block">
+                        <i class="bx bx-bell bx-sm"></i>
+                        <span
+                            class="badge badge-danger notification-badge">{{ App\Models\Abstrak::whereNull('read_at')->count() }}</span>
+                    </div>
                 </a>
                 <div class="dropdown-menu position-absolute" aria-labelledby="notificationDropdown"
                     style="max-width: 150px">

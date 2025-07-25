@@ -42,6 +42,16 @@
         href="{{ asset('backend_theme') }}/plugins/table/datatable/dt-global_style.css">
 
     @stack('css')
+    <style>
+        .notification-badge {
+            position: absolute;
+            top: 1px;
+            right: -12px;
+            font-size: 12px;
+            padding: 4px 6px;
+            border-radius: 50%;
+        }
+    </style>
 </head>
 
 <body class="sidebar-noneoverflow">
